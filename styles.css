@@ -1,0 +1,19 @@
+#btn {
+  width: 200px;
+  height: 200px;
+  
+}
+
+
+#book-form {
+  width:500px;
+  height:500px;
+}
+
+.hide-form {
+  visibility: hidden;
+}
+
+.display-book{
+  visibility: visible;
+}
