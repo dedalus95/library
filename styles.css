@@ -8,12 +8,62 @@
 #book-form {
   width:500px;
   height:500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hide-form {
   visibility: hidden;
 }
 
-.display-book{
-  visibility: visible;
+
+#table-header {
+  width:600px;
+  height: 80px;
+  margin: auto;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-title {
+  display: inline-block;
+  background-color: gray;
+  height: 60px;
+  width: 140px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+#table-row {
+  width:600px;
+  height: 60px;
+  margin: auto;
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row-title {
+  display: inline-block;
+  background-color: yellow;
+  height: 40px;
+  width: 140px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.hidden {
+  visibility: hidden;
 }

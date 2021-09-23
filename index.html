@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel = 'stylesheet' href = 'styles.css'>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
-
 </head>
+
 <body>  
   <button id='btn'></button>
 
@@ -17,11 +18,24 @@
     <input type="text" id="author" name="author"><br><br>
     <label for="pages">Number of pages:</label>
     <input type="text" id="pages" name="pages"><br><br>
-    <label for="read">Have you already read it?</label>
+    <label for="read">Did you already read it?</label>
     <input type="text" id="read" name="read"><br><br>
-    <input type="submit" value="Submit">
+    <input type="button" id = 'submitBtn' value="Submit">
   </form>
 
+  <div id = 'table-header' class="hidden">
+      <div class="table-title">Title</div>
+      <div class="table-title">Author</div>
+      <div class="table-title">Pages</div>
+      <div class="table-title">Read</div>
+  </div>
+
+  <div id="table-row" class="hidden">
+    <div id = '1' class="row-title"></div>
+    <div id = '2' class="row-title"></div>
+    <div id = '3' class="row-title"></div>
+    <div id = '4' class="row-title"></div>
+  </div>
 
   <script src = 'script.js'></script>
 </body>
