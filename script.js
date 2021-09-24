@@ -10,7 +10,7 @@ function showTable() {
   let tableHeader = document.getElementById('table-header');
   let tableRow = document.getElementById('table-row');
   tableHeader.classList.remove('hidden');
-  tableRow.classList.remove('hidden');
+  // tableRow.classList.remove('hidden');
 }
 
 btn.addEventListener('mousedown', showForm);
@@ -25,36 +25,32 @@ function Book(title, author, pages, read)
   this.read = read 
 }
 
-let a = document.getElementById('submitBtn').addEventListener('click', function(event) {
+let a = document.getElementById('book-form').addEventListener('submit', function(event) {
   const title = document.getElementById('title');
   const author = document.getElementById('author');
   const pages = document.getElementById('pages');
   const read = document.getElementById('read');
-  event.preventDefault();
-  // cleanArray(myLibrary);
-  addBookToLibrary(title.value, author.value, pages.value, read.value)
+  addBookToLibrary(title.value, author.value, pages.value, read.value);
+    cloneRow();
+  // loopsThroughTheArray();
   showTable();
   form.reset();
-  console.log(myLibrary);
+  event.preventDefault();
+
 });
 
 function addBookToLibrary(title, author, pages, read) {
   a = new Book(title, author, pages, read);
   myLibrary.unshift(a.title, a.author, a.pages, a.read);
-  loopsThroughTheArray();
-}
-
-function cleanArray(array) {
-  array.slice(4,0);
 }
 
 
 function loopsThroughTheArray() {
-
   let one = document.getElementById('1');
   let two = document.getElementById('2');
   let three = document.getElementById('3');
   let four = document.getElementById('4');
+  
     one.innerHTML += `${myLibrary[0]} `;
     two.innerHTML += `${myLibrary[1]} `;
     three.innerHTML += `${myLibrary[2]} `;
@@ -63,4 +59,21 @@ function loopsThroughTheArray() {
 
 
 
+    function cloneRow() {
+      let row = document.getElementById("table-row"); // find row to copy
+      let header = document.getElementById('table-header');
+      let clone = row.cloneNode(true); // copy children too
+      row.before(clone); // add new row to end of table
+      console.log(clone.childNodes)
+      clone.classList.remove('hidden');
+      clone.childNodes[1].innerHTML = myLibrary[0];
+      clone.childNodes[3].innerHTML = myLibrary[1];
+      clone.childNodes[5].innerHTML = myLibrary[2];
+      clone.childNodes[7].innerHTML = myLibrary[3];
 
+
+      console.log(clone);
+
+    }
+
+  
