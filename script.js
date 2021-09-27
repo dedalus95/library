@@ -1,79 +1,102 @@
+
 const btn = document.getElementById('btn');
-btn.innerHTML = 'sto cazzo';
-const form = document.getElementById('book-form');
+btn.addEventListener('mousedown', showForm);
+
 
 function showForm() {
-  form.classList.remove('hide-form');
+  const form = document.getElementById('book-form');
+  form.classList.remove('hidden');
+  btn.classList.add('hidden');
 }
+
 
 function showTable() {
-  let tableHeader = document.getElementById('table-header');
-  let tableRow = document.getElementById('table-row');
+  const tableHeader = document.getElementById('table-header');
   tableHeader.classList.remove('hidden');
-  // tableRow.classList.remove('hidden');
 }
 
-btn.addEventListener('mousedown', showForm);
+
+
+
 
 let myLibrary = [];
 
-function Book(title, author, pages, read)
+
+function Book(title, author, pages, read, added)
 {
-  this.title = title 
-  this.author = author
-  this.pages = pages 
-  this.read = read 
+  this.title = title; 
+  this.author = author;
+  this.pages = pages; 
+  this.read = read; 
+  this.added = added;
 }
 
-let a = document.getElementById('book-form').addEventListener('submit', function(event) {
+
+
+document.getElementById('book-form').addEventListener('submit', function(event) {
   const title = document.getElementById('title');
   const author = document.getElementById('author');
   const pages = document.getElementById('pages');
   const read = document.getElementById('read');
-  addBookToLibrary(title.value, author.value, pages.value, read.value);
-    cloneRow();
-  // loopsThroughTheArray();
+  const date = new Date();
+  const dateFormat = `${date.getDate()} ${((date.getMonth() + 1)<10?'0':'') + (date.getMonth() + 1)} ${date.getFullYear()} ${date.getHours()}:${(date.getMinutes()<10?'0':'') + date.getMinutes()}:${(date.getSeconds()<10?'0':'') + date.getSeconds()}`
+  
+  addBookToLibrary(title.value, author.value, pages.value, read.value, dateFormat);
+  cloneRow();
+
   showTable();
   form.reset();
   event.preventDefault();
 
 });
 
-function addBookToLibrary(title, author, pages, read) {
-  a = new Book(title, author, pages, read);
-  myLibrary.unshift(a.title, a.author, a.pages, a.read);
+document.getElementById('deleteBtn').addEventListener('mousedown', () => alert('sto cazzo'));
+
+function addBookToLibrary(title, author, pages, read, date) {
+  a = new Book(title, author, pages, read, date);
+  myLibrary.unshift(a);
+  console.log(a);
 }
 
 
-function loopsThroughTheArray() {
-  let one = document.getElementById('1');
-  let two = document.getElementById('2');
-  let three = document.getElementById('3');
-  let four = document.getElementById('4');
-  
-    one.innerHTML += `${myLibrary[0]} `;
-    two.innerHTML += `${myLibrary[1]} `;
-    three.innerHTML += `${myLibrary[2]} `;
-    four.innerHTML += `${myLibrary[3]} `;
-    }
+
+function removeElement(elem) {
+  elem.remove();
+}
 
 
-
-    function cloneRow() {
+    function cloneRow() {      
       let row = document.getElementById("table-row"); // find row to copy
-      let header = document.getElementById('table-header');
-      let clone = row.cloneNode(true); // copy children too
-      row.before(clone); // add new row to end of table
-      console.log(clone.childNodes)
-      clone.classList.remove('hidden');
-      clone.childNodes[1].innerHTML = myLibrary[0];
-      clone.childNodes[3].innerHTML = myLibrary[1];
-      clone.childNodes[5].innerHTML = myLibrary[2];
-      clone.childNodes[7].innerHTML = myLibrary[3];
+      let table = document.getElementById("table");
+      let cloneRow = row.cloneNode(true); // copy children too
+      table.appendChild(cloneRow);
+      cloneRow.classList.remove('hidden');
+      cloneRow.childNodes[1].innerHTML = myLibrary[0].title;
+      cloneRow.childNodes[3].innerHTML = myLibrary[0].author;
+      cloneRow.childNodes[5].innerHTML = myLibrary[0].pages;
+      cloneRow.childNodes[9].innerHTML = myLibrary[0].added;
+      cloneRow.childNodes[11].childNodes[1].addEventListener('click', () => {
+        removeElement(cloneRow);
+      })
 
 
-      console.log(clone);
+      if (myLibrary[0].read === 'yes')
+      {cloneRow.childNodes[7].innerHTML = setIcon('check', 'green');}
+      else if (myLibrary[0].read === 'Currently reading')    
+      {cloneRow.childNodes[7].innerHTML = setIcon('arrow-right', 'black');}
+      else {
+        cloneRow.childNodes[7].innerHTML = setIcon('times', 'red');
+       }
 
+      cloneRow.childNodes[7].addEventListener('click', () => {
+        let a = cloneRow.childNodes[7].innerHTML;
+        if (a === setIcon('check', 'green')) {cloneRow.childNodes[7].innerHTML = setIcon('times', 'red')}
+        else if (a === setIcon('times', 'red')) {cloneRow.childNodes[7].innerHTML = setIcon('arrow-right', 'black')}
+        else {cloneRow.childNodes[7].innerHTML = setIcon('check', 'green')}   
+    })}
+
+
+ 
+    function setIcon(icon, color) {
+      return `<i class="fa fa-${icon}" style="color: ${color}"></i>`
     }
-
-  

@@ -1,30 +1,49 @@
+body{
+  font-family: 'Montserrat';
+}
+
 #btn {
-  width: 200px;
-  height: 200px;
-  
+  width: 70px;
+  height: 70px;
+  color: #C13584;
+  cursor: pointer;
+  margin: auto;
 }
 
 
 #book-form {
-  width:500px;
-  height:500px;
-  margin: auto;
+  width:270px;
+  height:400px;
+  margin: 100px auto 100px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: #C13584 solid 5px;
+  border-radius: 46px;
 }
 
-.hide-form {
-  visibility: hidden;
+#book-form input, #book-form select {
+  border: #C13584 groove 2px;
+  border-radius: 46px;
+  outline: none;
+  background-color: white;
+}
+
+#submitBtn{
+  cursor: pointer;
+}
+
+label {
+  margin-bottom: 5px;
 }
 
 
 #table-header {
-  width:600px;
+  width:1000px;
   height: 80px;
   margin: auto;
-  background-color: red;
+  background-color: #C13584;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,10 +51,10 @@
 
 .table-title {
   display: inline-block;
-  background-color: gray;
-  height: 60px;
-  width: 140px;
-  margin: 5px;
+  background-color: white;
+  height: 70px;
+  width: 170px;
+  /* margin: 5px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,21 +62,28 @@
 }
 
 #table-row {
-  width:600px;
+  width:1000px;
   height: 60px;
   margin: auto;
-  background-color: green;
+  background-color: #C13584;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  bottom: 60px;
+}
+
+#deleteBtn {
+  background-color: white;
+  border-radius: 46px;
+  cursor: pointer;
 }
 
 .row-title {
   display: inline-block;
-  background-color: yellow;
-  height: 40px;
-  width: 140px;
-  margin: 5px;
+  background-color: white;
+  height: 55px;
+  width: 170px;
   display: flex;
   align-items: center;
   justify-content: center;

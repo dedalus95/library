@@ -3,15 +3,18 @@
 
 <head>
   <link rel = 'stylesheet' href = 'styles.css'>
-  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
 </head>
 
 <body>  
-  <button id='btn'></button>
+  <div id='btn'>
+  <i class = 'fa fa-plus-circle fa-5x'></i>
+  </div>
 
-  <form id = 'book-form' class="hide-form" name="form" action="#">
+  <form id = 'book-form' class="hidden" name="form" action="#">
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" required /><br><br>
     <label for="author">Author:</label>
@@ -24,7 +27,7 @@
       <option value="No">No</option>
       <option value="Currently reading">Currently reading</option>
     </select><br><br>
-    <input type="submit" id = 'submitBtn' value="Invia"></input>
+    <input type="submit" id = 'submitBtn' value="Submit"></input>
   </form>
 
   <div id = 'table-header' class="hidden">
@@ -32,14 +35,23 @@
       <div class="table-title">Author</div>
       <div class="table-title">Pages</div>
       <div class="table-title">Read</div>
+      <div class="table-title">Added</div>
+      <div class="table-title">Delete</div>
+
   </div>
 
+<div id = 'table'>
   <div id="table-row" class="hidden">
     <div class="row-title"></div>
     <div class="row-title"></div>
     <div class="row-title"></div>
     <div class="row-title"></div>
+    <div class="row-title"></div>
+    <div class="row-title">
+      <button id="deleteBtn">delete</button>
+    </div>
   </div>
+</div>
 
   <script src = 'script.js'></script>
 </body>
