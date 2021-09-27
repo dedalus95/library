@@ -7,14 +7,14 @@ body{
   height: 70px;
   color: #C13584;
   cursor: pointer;
-  margin: auto;
+  margin: auto auto auto 0px;
 }
 
 
 #book-form {
   width:270px;
   height:400px;
-  margin: 100px auto 100px auto;
+  margin: 0 auto 100px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
