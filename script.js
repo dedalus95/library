@@ -2,22 +2,16 @@
 const btn = document.getElementById('btn');
 btn.addEventListener('mousedown', showForm);
 
-
 function showForm() {
   const form = document.getElementById('book-form');
   form.classList.remove('hidden');
   btn.classList.add('hidden');
 }
 
-
 function showTable() {
   const tableHeader = document.getElementById('table-header');
   tableHeader.classList.remove('hidden');
 }
-
-
-
-
 
 let myLibrary = [];
 
@@ -30,8 +24,6 @@ function Book(title, author, pages, read, added)
   this.read = read; 
   this.added = added;
 }
-
-
 
 document.getElementById('book-form').addEventListener('submit', function(event) {
   const title = document.getElementById('title');
@@ -46,6 +38,7 @@ document.getElementById('book-form').addEventListener('submit', function(event) 
 
   showTable();
   form.reset();
+ 
   event.preventDefault();
 
 });
@@ -57,8 +50,6 @@ function addBookToLibrary(title, author, pages, read, date) {
   myLibrary.unshift(a);
   console.log(a);
 }
-
-
 
 function removeElement(elem) {
   elem.remove();
@@ -95,8 +86,6 @@ function removeElement(elem) {
         else {cloneRow.childNodes[7].innerHTML = setIcon('check', 'green')}   
     })}
 
-
- 
     function setIcon(icon, color) {
       return `<i class="fa fa-${icon}" style="color: ${color}"></i>`
     }
