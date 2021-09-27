@@ -38,7 +38,7 @@ document.getElementById('book-form').addEventListener('submit', function(event) 
 
   showTable();
   form.reset();
- 
+  
   event.preventDefault();
 
 });
@@ -89,3 +89,4 @@ function removeElement(elem) {
     function setIcon(icon, color) {
       return `<i class="fa fa-${icon}" style="color: ${color}"></i>`
     }
+

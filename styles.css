@@ -72,6 +72,10 @@ label {
   bottom: 60px;
 }
 
+#read {
+  cursor: pointer;
+}
+
 #deleteBtn {
   background-color: white;
   border-radius: 46px;
