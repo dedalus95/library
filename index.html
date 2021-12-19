@@ -10,12 +10,9 @@
 </head>
 
 <body>  
-  <div style="width: 1000px; margin: auto;">
-  <div id='btn'>
-  <i class = 'fa fa-plus-circle fa-5x'></i>
-  </div>
 
-  <form id = 'book-form' class="hidden" name="form" action="#">
+
+  <form id = 'book-form' name="form" action="#">
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" required /><br><br>
     <label for="author">Author:</label>
@@ -32,29 +29,17 @@
   </form>
 
 
-  <div id = 'table-header' class="hidden">
+  <div id = 'table-header' >
       <div class="table-title">Title</div>
       <div class="table-title">Author</div>
       <div class="table-title">Pages</div>
       <div class="table-title">Read</div>
       <div class="table-title">Added</div>
       <div class="table-title">Delete</div>
-
   </div>
 
-<div id = 'table'>
-  <div id="table-row" class="hidden">
-    <div class="row-title"></div>
-    <div class="row-title"></div>
-    <div class="row-title"></div>
-    <div id = 'read' class="row-title"></div>
-    <div class="row-title"></div>
-    <div class="row-title">
-      <button id="deleteBtn">delete</button>
-    </div>
-  </div>
-</div>
-</div>
+
+
   <script src = 'script.js'></script>
 </body>
 </html>
