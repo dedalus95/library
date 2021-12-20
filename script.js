@@ -10,6 +10,7 @@ class Book {
     this.pages = pages;
     this.read = read;
     this.date = new Date();
+    this.rendered = false;
   }
     
     getTitle = function() {
@@ -27,8 +28,20 @@ class Book {
       return this.read;
     }
 
+    setHasBeenRead = value => {
+      this.read = value;
+    }
+
     getDate = function() {
       return this.date;
+    }
+
+    setIsRendered = (rend) => {
+      this.rendered = rend;
+    }
+
+    getIsRendered = function() {
+      return this.rendered;
     }
 
 }
@@ -38,7 +51,8 @@ let addBookToThelibrary = function(book) {
 }
 
 
-document.getElementById('submitBtn').addEventListener('submit', function(event) {
+let button = document.getElementById('book-form');
+button.addEventListener('submit', function(event) {
   const title = document.getElementById('title');
   const author = document.getElementById('author');
   const pages = document.getElementById('pages');
@@ -47,10 +61,11 @@ document.getElementById('submitBtn').addEventListener('submit', function(event) 
   const newBook = new Book(title.value, author.value, pages.value, read.value);
   
   
-  addBookToLibrary(newBook);
-  // console.log(myLibrary);
+  addBookToThelibrary(newBook);
+  renderBooks();
+  console.log(myLibrary);
  
-  // form.reset();
+  form.reset();
   event.preventDefault();
 
 });
@@ -59,87 +74,143 @@ document.getElementById('submitBtn').addEventListener('submit', function(event) 
 
 
 let renderBooks = function() {
-  
-  for(let i = 0; i < myLibrary.length; i++) {
-  
+  // console.log(newBook.getIsRendered());
+
+
+for(let i = 0; i < myLibrary.length; i++) {
+    if(myLibrary[i].getIsRendered() === false || myLibrary.length === 0) {
+
+    
+   
 let ab = document.createElement('div');
-
-ab.style.backgroundColor = 'white';
-ab.style.border = 'black solid 2px';
-ab.style.width = '996px';
-ab.style.height = '50px';
-ab.style.display = 'flex';
-ab.style.justifyContent = 'center';
-ab.style.marginLeft = '209px';
-
+setContainerDimensions(ab);
 document.body.appendChild(ab);
+ab.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
+
+
 
 let titleDiv = document.createElement('div');
 let authorDiv = document.createElement('div');
 let pagesDiv = document.createElement('div');
 let readDiv = document.createElement('div');
+      let yesOrNoDiv = document.createElement('div');
+      readDiv.appendChild(yesOrNoDiv);
 let dateDiv = document.createElement('div');
 let deleteDiv = document.createElement('div');
+let deleteBtn = document.createElement('button');
+let toggleBtn = document.createElement('button');
+let toggleIcon = document.createElement('i');
+toggleIcon.classList.add('fa');
+toggleIcon.classList.add('fa-exchange');
+toggleBtn.style.border = '#C13584 groove 2px';
+toggleBtn.style.borderRadius = '46px';
+toggleBtn.style.marginLeft = '5px';
+toggleBtn.style.cursor = 'pointer';
 
 
 
 
-ab.appendChild(titleDiv);
-ab.appendChild(authorDiv);
-ab.appendChild(pagesDiv);
-ab.appendChild(readDiv);
-ab.appendChild(dateDiv);
-ab.appendChild(deleteDiv);
-
-titleDiv.style.width = '170px';
-authorDiv.style.width = '170px';
-pagesDiv.style.width = '170px';
-readDiv.style.width = '170px';
-dateDiv.style.width = '170px';
-deleteDiv.style.width = '170px';
-
-titleDiv.style.height = '50px';
-authorDiv.style.height = '50px';
-pagesDiv.style.height = '50px';
-readDiv.style.height = '50px';
-dateDiv.style.height = '50px';
-deleteDiv.style.height = '50px';
+deleteBtn.style.width = "50px";
+deleteBtn.style.height = '25px';
+deleteBtn.style.border = 'black solid 1px';
+deleteBtn.style.innerHTML = 'delete';
+deleteBtn.style.cursor = 'pointer';
+deleteBtn.style.textAlign = 'center';
+deleteBtn.style.outline = 'none';
+deleteBtn.style.border = '#C13584 groove 2px';
+deleteBtn.style.borderRadius = '46px';
+deleteBtn.style.backgroundColor = 'white';
 
 
-titleDiv.style.display = 'flex';
-authorDiv.style.display = 'flex';
-pagesDiv.style.display = 'flex';
-readDiv.style.display = 'flex';
-dateDiv.style.display = 'flex';
-deleteDiv.style.display = 'flex';
+deleteBtn.innerHTML = 'delete';
+deleteBtn.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
+toggleBtn.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
 
 
-titleDiv.style.justifyContent = 'center';
-authorDiv.style.justifyContent = 'center';
-pagesDiv.style.justifyContent = 'center';
-readDiv.style.justifyContent = 'center';
-dateDiv.style.justifyContent = 'center';
-deleteDiv.style.justifyContent = 'center';
+let arrayOfDivs = [];
+arrayOfDivs.push(titleDiv);
+arrayOfDivs.push(authorDiv);
+arrayOfDivs.push(pagesDiv);
+arrayOfDivs.push(readDiv);
+arrayOfDivs.push(dateDiv);
+arrayOfDivs.push(deleteDiv);
 
-titleDiv.style.alignItems = 'center';
-authorDiv.style.alignItems = 'center';
-pagesDiv.style.alignItems = 'center';
-readDiv.style.alignItems = 'center';
-dateDiv.style.alignItems = 'center';
-deleteDiv.style.alignItems = 'center';
-
-
+setDimensions(ab, arrayOfDivs);
 
 titleDiv.innerHTML += myLibrary[i].getTitle();
 authorDiv.innerHTML += myLibrary[i].getAuthor();
 pagesDiv.innerHTML += myLibrary[i].getPages();
-readDiv.innerHTML += myLibrary[i].hasBeenRead();
+readDiv.childNodes[0].innerHTML += myLibrary[i].hasBeenRead();
 dateDiv.innerHTML += myLibrary[i].getDate().toDateString();
-deleteDiv.innerHTML += "merda";
 
+deleteDiv.appendChild(deleteBtn);
+toggleBtn.appendChild(toggleIcon);
+readDiv.appendChild(toggleBtn);
+
+myLibrary[i].setIsRendered(true);
+
+toggleStatus(ab, toggleBtn);
+removeBooks(ab, deleteBtn, i);
+    }
+   }
   }
+
+
+function removeBooks(div, btn) {
+  btn.addEventListener('click', () => {
+
+    for(let o = 0; o < myLibrary.length; o++) {
+      if(myLibrary[o].getTitle() + myLibrary[o].getPages() === div.dataset.book) {
+            myLibrary.splice(o, 1);
+            div.remove();
+      }
+    }
+  })
 }
 
 
+function toggleStatus(div, btn) {
+  btn.addEventListener('click', () => {
+
+    for(let p = 0; p < myLibrary.length; p++) {
+      if(myLibrary[p].getTitle() + myLibrary[p].getPages() === div.dataset.book) {
+              if(myLibrary[p].hasBeenRead() === 'yes') {
+                myLibrary[p].setHasBeenRead('no');
+                div.childNodes[3].childNodes[0].textContent = 'no';
+              } else {
+                myLibrary[p].setHasBeenRead('yes');
+                div.childNodes[3].childNodes[0].textContent = 'yes';
+              }
+      }
+    }
+  })
+}
 
 
+  function setContainerDimensions(container) {
+    container.style.backgroundColor = 'white';
+    container.style.border = 'black solid 2px';
+    container.style.width = '996px';
+    container.style.height = '50px';
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.margin = 'auto';
+  }
+
+
+
+
+  function setDimensions(container, array) {
+
+      for (let i = 0; i < array.length; i++) {
+        container.appendChild(array[i]);
+        array[i].style.width = '170px';
+        array[i].style.height = '50px';
+        array[i].style.display = 'flex';
+        array[i].style.justifyContent = 'center';
+        array[i].style.alignItems = 'center';
+      }
+  }
+
+
+ 
