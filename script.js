@@ -74,78 +74,56 @@ button.addEventListener('submit', function(event) {
 
 
 let renderBooks = function() {
-  // console.log(newBook.getIsRendered());
-
 
 for(let i = 0; i < myLibrary.length; i++) {
     if(myLibrary[i].getIsRendered() === false || myLibrary.length === 0) {
 
-    
-   
-let ab = document.createElement('div');
-setContainerDimensions(ab);
-document.body.appendChild(ab);
-ab.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
+    let ab = document.createElement('tr');
+    let tBody = document.getElementById('tbody');
+    tBody.appendChild(ab);
+    ab.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
+
+    let titleCell = document.createElement('th');
+        titleCell.scope = 'row';
+    let authorCell = document.createElement('td');
+    let pagesCell = document.createElement('td');
+    let readCell = document.createElement('td');
+    let yesOrNoDiv = document.createElement('div');
+        readCell.appendChild(yesOrNoDiv);
+        yesOrNoDiv.id = 'yes-or-no';
+    let dateCell = document.createElement('td');
+    let deleteCell = document.createElement('td');
+    let deleteBtn = document.createElement('button');
+        deleteBtn.id = 'deleteBtn';
+    let toggleBtn = document.createElement('button');
+        toggleBtn.id = 'toggleBtn';
+    let toggleIcon = document.createElement('i');
+        toggleIcon.classList.add('fa');
+        toggleIcon.classList.add('fa-exchange');
+
+        deleteBtn.innerHTML = 'delete';
+        deleteBtn.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
+        toggleBtn.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
+
+        ab.appendChild(titleCell);
+        ab.appendChild(authorCell);
+        ab.appendChild(pagesCell);
+        ab.appendChild(readCell);
+        ab.appendChild(dateCell);
+        ab.appendChild(deleteCell);
 
 
+        titleCell.innerHTML += myLibrary[i].getTitle();
+        authorCell.innerHTML += myLibrary[i].getAuthor();
+        pagesCell.innerHTML += myLibrary[i].getPages();
+        readCell.childNodes[0].innerHTML += myLibrary[i].hasBeenRead();
+        dateCell.innerHTML += myLibrary[i].getDate().toDateString();
 
-let titleDiv = document.createElement('div');
-let authorDiv = document.createElement('div');
-let pagesDiv = document.createElement('div');
-let readDiv = document.createElement('div');
-      let yesOrNoDiv = document.createElement('div');
-      readDiv.appendChild(yesOrNoDiv);
-let dateDiv = document.createElement('div');
-let deleteDiv = document.createElement('div');
-let deleteBtn = document.createElement('button');
-let toggleBtn = document.createElement('button');
-let toggleIcon = document.createElement('i');
-toggleIcon.classList.add('fa');
-toggleIcon.classList.add('fa-exchange');
-toggleBtn.style.border = '#C13584 groove 2px';
-toggleBtn.style.borderRadius = '46px';
-toggleBtn.style.marginLeft = '5px';
-toggleBtn.style.cursor = 'pointer';
+        deleteCell.appendChild(deleteBtn);
+        toggleBtn.appendChild(toggleIcon);
+        readCell.appendChild(toggleBtn);
 
 
-
-
-deleteBtn.style.width = "50px";
-deleteBtn.style.height = '25px';
-deleteBtn.style.border = 'black solid 1px';
-deleteBtn.style.innerHTML = 'delete';
-deleteBtn.style.cursor = 'pointer';
-deleteBtn.style.textAlign = 'center';
-deleteBtn.style.outline = 'none';
-deleteBtn.style.border = '#C13584 groove 2px';
-deleteBtn.style.borderRadius = '46px';
-deleteBtn.style.backgroundColor = 'white';
-
-
-deleteBtn.innerHTML = 'delete';
-deleteBtn.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
-toggleBtn.dataset.book = myLibrary[i].getTitle() + myLibrary[i].getPages();
-
-
-let arrayOfDivs = [];
-arrayOfDivs.push(titleDiv);
-arrayOfDivs.push(authorDiv);
-arrayOfDivs.push(pagesDiv);
-arrayOfDivs.push(readDiv);
-arrayOfDivs.push(dateDiv);
-arrayOfDivs.push(deleteDiv);
-
-setDimensions(ab, arrayOfDivs);
-
-titleDiv.innerHTML += myLibrary[i].getTitle();
-authorDiv.innerHTML += myLibrary[i].getAuthor();
-pagesDiv.innerHTML += myLibrary[i].getPages();
-readDiv.childNodes[0].innerHTML += myLibrary[i].hasBeenRead();
-dateDiv.innerHTML += myLibrary[i].getDate().toDateString();
-
-deleteDiv.appendChild(deleteBtn);
-toggleBtn.appendChild(toggleIcon);
-readDiv.appendChild(toggleBtn);
 
 myLibrary[i].setIsRendered(true);
 
@@ -186,31 +164,6 @@ function toggleStatus(div, btn) {
   })
 }
 
-
-  function setContainerDimensions(container) {
-    container.style.backgroundColor = 'white';
-    container.style.border = 'black solid 2px';
-    container.style.width = '996px';
-    container.style.height = '50px';
-    container.style.display = 'flex';
-    container.style.justifyContent = 'center';
-    container.style.margin = 'auto';
-  }
-
-
-
-
-  function setDimensions(container, array) {
-
-      for (let i = 0; i < array.length; i++) {
-        container.appendChild(array[i]);
-        array[i].style.width = '170px';
-        array[i].style.height = '50px';
-        array[i].style.display = 'flex';
-        array[i].style.justifyContent = 'center';
-        array[i].style.alignItems = 'center';
-      }
-  }
 
 
  

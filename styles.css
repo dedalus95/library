@@ -4,14 +4,15 @@ body{
 
 }
 
-#btn {
-  width: 70px;
-  height: 70px;
-  color: #C13584;
-  cursor: pointer;
-  margin: auto auto auto 0px;
+#container {
+  width: 100%;
+  margin-top: 100px;
 }
 
+h1 {
+  text-align: center;
+  padding-top: 15px;
+}
 
 #book-form {
   width:270px;
@@ -21,12 +22,12 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: #C13584 solid 5px;
+  border: #2c3034 solid 5px;
   border-radius: 46px;
 }
 
 #book-form input, #book-form select {
-  border: #C13584 groove 2px;
+  border: #2c3034 groove 2px;
   border-radius: 46px;
   outline: none;
   background-color: white;
@@ -36,65 +37,37 @@ body{
   cursor: pointer;
 }
 
-label {
-  margin-bottom: 5px;
-}
-
-
-#table-header {
-  width:1000px;
-  height: 80px;
-  margin: auto;
-  background-color: #C13584;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.table-title {
-  display: inline-block;
-  background-color: white;
-  height: 70px;
-  width: 170px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-}
-
-#table-row {
-  width:1000px;
-  height: 60px;
-  margin: auto;
-  background-color: #C13584;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  bottom: 60px;
-}
-
-#read {
+#toggleBtn, #deleteBtn {
+  border: #2c3034 solid 2px;
+  border-radius: 46px;
   cursor: pointer;
+  outline: none;
+  
 }
 
 #deleteBtn {
-  background-color: white;
-  border-radius: 46px;
-  cursor: pointer;
+  width: 70px;  
+  height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
 }
 
-.row-title {
-  display: inline-block;
-  background-color: white;
-  height: 55px;
-  width: 170px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
+#toggleBtn {
+  margin-left: 5px;
 }
+
+#yes-or-no {
+  display: inline;
+}
+
 
 .hidden {
   visibility: hidden;
 }
+
+th,td {
+  text-align: center !important;
+  vertical-align: middle;
+}
+

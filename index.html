@@ -5,37 +5,46 @@
   <link rel = 'stylesheet' href = 'styles.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
 </head>
 
 <body>  
+<h1>MY LIBRARY</h1>
 
-
+<div id = 'container'>
   <form id = 'book-form' name="form" action="#">
     <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required /><br><br>
+    <input type="text" id="title" name="title" required /> <br>
     <label for="author">Author:</label>
-    <input type="text" id="author" name="author" required /><br><br>
+    <input type="text" id="author" name="author" required /> <br>
     <label for="pages">Number of pages:</label>
-    <input type="text" id="pages" name="pages" pattern="^\d+$" required /><br><br>
+    <input type="text" id="pages" name="pages" pattern="^\d+$" required /> <br>
     <label for="read">Did you already read it?</label>
     <select type="text" id="read" name="read" required>
       <option value="yes">Yes</option>
       <option value="No">No</option>
       <option value="Currently reading">Currently reading</option>
-    </select><br><br>
+    </select> <br>
     <input type="submit" id = 'submitBtn' value="Submit"></input>
   </form>
 
 
-  <div id = 'table-header' >
-      <div class="table-title">Title</div>
-      <div class="table-title">Author</div>
-      <div class="table-title">Pages</div>
-      <div class="table-title">Read</div>
-      <div class="table-title">Added</div>
-      <div class="table-title">Delete</div>
+<table class="table table-dark table-striped table-sm table-bordered">
+  <thead>
+    <tr>
+      <th class="col-md-2">TITLE</th>
+      <th class="col-md-2">AUTHOR</th>
+      <th class="col-md-2">PAGES N.</th>
+      <th class="col-md-2">READ/NOT READ</th>
+      <th class="col-md-2">ADDED ON:</th>
+      <th class="col-md-2">DELETE</th>
+    </tr>
+  </thead>
+  <tbody id = 'tbody'>
+  </tbody>
+</table>
 </div>
 
 
