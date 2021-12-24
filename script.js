@@ -50,9 +50,7 @@ let addBookToThelibrary = function(book) {
   myLibrary.push(book);
 }
 
-
-let button = document.getElementById('book-form');
-button.addEventListener('submit', function(event) {
+function submitBooks(event) {
   const title = document.getElementById('title');
   const author = document.getElementById('author');
   const pages = document.getElementById('pages');
@@ -68,7 +66,10 @@ button.addEventListener('submit', function(event) {
   form.reset();
   event.preventDefault();
 
-});
+}
+
+let button = document.getElementById('book-form');
+button.addEventListener('submit', submitBooks);
 
 
 
@@ -165,5 +166,3 @@ function toggleStatus(div, btn) {
 }
 
 
-
- 
